@@ -1,0 +1,30 @@
+之前项目组的做接口时候，因为没有使用策略模式写了很多的if……else
+如下：
+        if("S0001".equals(servicesId)){
+            S10001.execute(context);
+        }else if("S0002".equals(servicesId)){
+            S10002.execute(context);
+        }else if("S0013".equals(servicesId)){
+            S10004.execute(context);
+        }else if("S0009".equals(servicesId)){
+            S10009.execute(context);
+        }else if("S0038".equals(servicesId)){
+            S10038.execute(context);
+        }else if("S0039".equals(servicesId)){
+            S10039.execute(context);
+        }else if("S0040".equals(servicesId)){
+            S10040.execute(context);
+        }else if("S0041".equals(servicesId)){
+            S10090.execute(context);
+        }
+        ……
+现在使用策略模式做以下优化，减少避免过多的使用if……else
+1、建立业务接口类的抽象接口 IServer,增加方法 void execute(Context context) throws Exception;
+ 备注：项目中没有使用接口进行处理，因此需要增加interface 进行 抽象管理
+2、每个接口都implements IServer 。如：S10001 implements IServer
+3、添加业务接口选择策略类ServerStrategy。该类中设置容器map用于存储所有的接口类与serverId的映射
+4、去掉调用业务接口的类中大量的if……else，
+ 修改为： ServerStrategy.serverMap.get(servicesId).execute(context);
+ 以上完毕
+
+
