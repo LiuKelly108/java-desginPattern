@@ -1,0 +1,25 @@
+1、思考：模板模式除了继承以外，还有哪些实现方式？
+模板方式除了继承外，还可以以引用公共部分的类方式实现，具体如下：
+将结构步骤中，公共部分作为一个单独的类A，新建定制化的类B，使得A为B的成员变量，则 B 可以在自己
+的类中使用类A的方法。使用的时候再实现B的方法。
+如：项目结构同级中mytemplate包中的CookDinner2拿到CookDinner的引用，则可以调用CookDinner的方法使用定义好的做饭模板,
+执行时候，见CookDinenrTest中的执行写法（重写CookDinner 中的抽象方法）：
+ CookDinner2 cookDinner2 =  new  CookDinner2(new CookDinner() {
+            @Override
+            void washVegetable() {
+                System.out.println("洗黄瓜和土豆");
+            }
+
+            @Override
+            void cuttingVegetable() {
+                System.out.println("切土豆为丝，黄瓜为片状");
+            }
+        });
+        cookDinner2.cookDinner();
+ 获得结果：
+            取出一个平底锅
+            洗黄瓜和土豆
+            切土豆为丝，黄瓜为片状
+            炒菜
+            放调料
+            出锅
