@@ -11,7 +11,7 @@ public abstract  class CookDinner {
         cuttingVegetable();
         friedVegetable();
         putFlavour();
-       outPot();
+        outPot();
     }
 
     final void  getPot(){

@@ -1,5 +1,8 @@
 package com.kellystudy.pattern.template.mytemplate;
 
+/**
+ * 第一种模板模式实现方法
+ */
 public class CookDinner1 extends CookDinner {
 
     @Override
