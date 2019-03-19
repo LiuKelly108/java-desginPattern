@@ -10,7 +10,7 @@ public class GPer {
     private String name = "咕泡生态圈" ;
     private static GPer gper = null ;
     private List<Question> list = new ArrayList<Question>(); //存放已提交问题的容器
-    private boolean flag = false ; //默认发通知
+    private boolean flag = true ; //默认发通知
 
     private GPer(){}
 
