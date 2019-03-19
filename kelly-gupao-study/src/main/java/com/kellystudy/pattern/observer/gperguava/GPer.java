@@ -10,6 +10,7 @@ public class GPer {
     private String name = "咕泡生态圈" ;
     private static GPer gper = null ;
     private List<Question> list = new ArrayList<Question>(); //存放已提交问题的容器
+    private boolean flag = false ; //默认发通知
 
     private GPer(){}
 
@@ -30,7 +31,10 @@ public class GPer {
         list.add(question);
         System.out.println("***************一个新问题提交成功*************");
         System.out.println(question.getUsername()+"同学在"+this.name+"上，提交了一个问题！");
-        this.notifyEventBus(question);
+
+        if(this.flag){
+            notifyEventBus(question);
+        }
     }
 
     //唤起检测者

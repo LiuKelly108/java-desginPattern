@@ -11,6 +11,12 @@ public class Question {
     private String content ;  //提问内容
     private List<Teacher> teachersList = new ArrayList<Teacher>(); //希望解答该问题的老师
 
+    public Question(String username, String content, List<Teacher> teachersList) {
+        this.username = username;
+        this.content = content;
+        this.teachersList = teachersList;
+    }
+
     private EventBus eventBus = new EventBus() ;
 
 
@@ -37,6 +43,7 @@ public class Question {
     public void setList(List<Teacher> list) {
         this.teachersList = list;
     }
+
 
 
     //问题绑定监听
