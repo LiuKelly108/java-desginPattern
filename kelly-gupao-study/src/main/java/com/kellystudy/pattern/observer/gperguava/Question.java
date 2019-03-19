@@ -1,5 +1,7 @@
 package com.kellystudy.pattern.observer.gperguava;
 
+import com.google.common.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,10 @@ public class Question {
 
     private String username ; //提问人
     private String content ;  //提问内容
-    private List<Teacher> teachersList = new ArrayList<Teacher>(); //@解答问题的老师
+    private List<Teacher> teachersList = new ArrayList<Teacher>(); //希望解答该问题的老师
+
+    private EventBus eventBus = new EventBus() ;
+
 
     public String getUsername() {
         return username;
@@ -31,5 +36,28 @@ public class Question {
 
     public void setList(List<Teacher> list) {
         this.teachersList = list;
+    }
+
+
+    //问题绑定监听
+    public  final  void  addBindEventBus(){
+        //注册问题
+        List<Teacher> teachersList = this.getTeachersList();
+        if(teachersList.size()>0){
+            for(Teacher teacher : teachersList){
+                eventBus.register(teacher);
+            }
+            eventBus.post(this);
+        }
+    }
+
+    //去掉监听绑定
+    public final void removeEventBus(){
+        List<Teacher> teachersList = this.getTeachersList();
+        if(teachersList.size()>0){
+            for(Teacher teacher : teachersList){
+                eventBus.unregister(teacher);
+            }
+        }
     }
 }
