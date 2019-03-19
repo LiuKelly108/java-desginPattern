@@ -17,7 +17,7 @@ public class GuavaTest {
 
     public static void main(String[] args) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
 
-        //******提问题********
+        //******提问题********又提问者指定具体的作答人员
         List<AObserver> questionObser = new ArrayList<AObserver>();
         questionObser.add(new TeacherObserver("Tom"));
         questionObser.add(new StudentObserver("小雪儿"));
