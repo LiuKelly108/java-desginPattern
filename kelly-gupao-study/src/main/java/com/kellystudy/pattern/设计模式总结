@@ -1,0 +1,35 @@
+一、设计模式总结：
+1、工厂模式: 从我这里拿东西，不要重复造轮子。
+2、单例模式：我是独一无二的。
+3、原型模式：细胞的有丝分裂
+4、模板模式：植物的光合作用都是按照既定的步骤模板进行的。
+5、代理模式：想租房，找中介。
+6、委派模式: 情报机构指派卧底潜入犯罪团伙搜集情报
+7、策略模式：快递网点的取件业务既可送货上门，又可自提。
+8、适配器模式：消化系统将食物转换为身体所需的能量。
+9、装饰器模式: 装修毛坯房子
+10、观察者模式：卧底监视犯罪团伙，并将情报反馈给自己的公司。
+二、列举SpringAOP、IOC、DI应用的代码片段
+1、SpringAOP:面向切面编程（面向规则编程）。总结事物的规律，开发时候将其规律分离，单独处理，使用的时候再将其合并在一起组成整体
+             解耦，专人做专事
+	@Pointcut("execution(* com.gupaoedu.vip.pattern.spring.aop.service..*(..))")
+	public void aspect(){	}
+
+	@Before("aspect()")
+    public void before(JoinPoint joinPoint){}
+
+2、IOC：将bean创建职责转交给Spring去完成（beanFactory）
+ ApplicationContext app =new ClassPathXmlApplicationContext("application-autobean.xml");
+  PoeticJuggler pj = (PoeticJuggler) app.getBean("poeticDuck");
+
+   <bean id="poeticDuck" class="com.zy.bean.impl.PoeticJuggler"  scope="prototype">
+          <constructor-arg value="15"/>
+          <constructor-arg ref="sonnet29"/>  <!--ref是类反射-->
+   </bean>
+
+3、DI：给bean 的成员变量赋值
+public class Instrumentalist implements Performer {
+    @Value(value = "春天在哪里")
+    private  String song ;
+    @Resource(name = "piano")
+    private Instrument instrument;
